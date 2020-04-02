@@ -10,7 +10,7 @@ Object.entries(searchData).forEach(([id, item]) => {
   index.add(id, item.text);
 });
 
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
   const {
     queryStringParameters: { limit, term },
   } = event;

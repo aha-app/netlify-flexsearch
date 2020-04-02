@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
-import { search, useSearch } from "./index";
+import { useSearch } from "./index";
 
 describe("useSearch", () => {
   const Search = () => {

@@ -52,7 +52,7 @@ export const useSearch = (
         )
         .catch((error) => dispatch({ type: "endSearch", results: [], error }));
     }
-  }, [index, term]);
+  }, [index, term, limit]);
 
   return [searchTerm, setSearchTerm, results, loading, error];
 };
