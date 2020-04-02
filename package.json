@@ -1,0 +1,27 @@
+{
+  "name": "@aha-app/netlify-flexsearch",
+  "version": "0.1.0",
+  "description": "Helper library to build search with a Netlify function",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "repository": "https://github.com/aha-app/netlify-flexsearch",
+  "author": "Zach Schneider <zach@aha.io>",
+  "license": "MIT",
+  "scripts": {
+    "build":  "rollup -c rollup.config.js"
+  },
+  "dependencies": {
+    "flexsearch": "^0.6.32",
+    "use-debounce": "^3.4.0"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "react": "^16.13.1",
+    "rollup": "^2.3.2",
+    "rollup-plugin-babel": "^4.4.0"
+  }
+}
