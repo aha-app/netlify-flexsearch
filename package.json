@@ -8,7 +8,8 @@
   "author": "Zach Schneider <zach@aha.io>",
   "license": "MIT",
   "files": [
-    "dist/"
+    "dist/",
+    "createSearchIndex.js"
   ],
   "scripts": {
     "build": "rollup -c rollup.config.js",
