@@ -30,7 +30,7 @@ const reducer = (state, action) => {
 
 export const useSearch = (
   index,
-  { defaultTerm = "", debounce = 250, limit }
+  { defaultTerm = "", debounce = 250, limit } = {}
 ) => {
   const [searchTerm, setSearchTerm] = useState(defaultTerm);
   const [{ loading, results, error }, dispatch] = useReducer(
@@ -40,12 +40,18 @@ export const useSearch = (
   const [term] = useDebounce(searchTerm, debounce);
 
   useEffect(() => {
-    dispatch({ type: "startSearch" });
-    search({ index, term, limit })
-      .then((response) =>
-        dispatch({ type: "endSearch", results: response.results, error: null })
-      )
-      .catch((error) => dispatch({ type: "endSearch", results: [], error }));
+    if (term && term !== "") {
+      dispatch({ type: "startSearch" });
+      search({ index, term, limit })
+        .then((response) =>
+          dispatch({
+            type: "endSearch",
+            results: response.results,
+            error: null,
+          })
+        )
+        .catch((error) => dispatch({ type: "endSearch", results: [], error }));
+    }
   }, [index, term]);
 
   return [searchTerm, setSearchTerm, results, loading, error];

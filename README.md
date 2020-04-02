@@ -91,15 +91,15 @@ const Search = () => {
 
       {loading && "Loading..."}
       {error && `Oh no! Something went wrong.`}
-      {!(loading || error) && <ul>
-        {results.map(result => (
-          // Result data here matches what is provided in the
-          // `response` object when building the index.
-          <li key={result.id}>
-            {result.name}
-          </li>
-        ))}
-      </ul>}
+      {!(loading || error) && (
+        <ul>
+          {results.map((result) => (
+            // Result data here matches what is provided in the
+            // `response` object when building the index.
+            <li key={result.id}>{result.name}</li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }
