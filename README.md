@@ -62,7 +62,7 @@ createSearchIndex({
 
 4. Import and use one of the helper functions for searching. The package provides both a React hook and a basic asynchronous function.
 
-```
+```javascript
 // Search.js (React-based usage)
 import { useSearch } from '@aha-app/netlify-flexsearch';
 
@@ -76,6 +76,7 @@ const Search = () => {
   // The second (optional) is an object of additional options:
   // - debounce (default 250)
   // - defaultSearchTerm (prefill the search with a term to start)
+  // - limit (limit the number of results that are returned)
   const [searchTerm, setSearchTerm, results, loading, error] = useSearch('blog', { debounce: 300 });
 
   return (
