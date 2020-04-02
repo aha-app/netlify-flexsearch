@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/aha-app/netlify-flexsearch.svg?style=shield)](https://circleci.com/gh/aha-app/netlify-flexsearch)
+
 # netlify-flexsearch
 
 Library to help build [FlexSearch](https://github.com/nextapps-de/flexsearch) indexes with Netlify functions.
@@ -6,7 +8,7 @@ Library to help build [FlexSearch](https://github.com/nextapps-de/flexsearch) in
 
 You might find this library useful if:
 
-1. You are building static site on Netlify and you would like to implement search.
+1. You are building a static site on Netlify and you would like to implement search.
 2. You need to index a large enough quantity of data that building an in-browser search index will cause performance problems.
 3. You don't want to add a third-party service such as Algolia.
 
