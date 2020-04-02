@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  test:
+    working_directory: ~/netlify-flexsearch
+    docker:
+      - image: circleci/node:12-stretch
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - ./node_modules
+      - run:
+          name: ESLint
+          command: yarn lint
+      - run:
+          name: Jest
+          command: yarn test
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
