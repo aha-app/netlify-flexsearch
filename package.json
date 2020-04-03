@@ -1,6 +1,6 @@
 {
   "name": "@aha-app/netlify-flexsearch",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Helper library to build search with a Netlify function",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
