@@ -9,7 +9,9 @@
   "license": "MIT",
   "files": [
     "dist/",
-    "createSearchIndex.js"
+    "createSearchIndex.js",
+    "index.js",
+    "template.js"
   ],
   "scripts": {
     "build": "rollup -c rollup.config.js",
