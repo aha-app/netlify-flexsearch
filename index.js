@@ -30,9 +30,9 @@ const reducer = (state, action) => {
 
 export const useSearch = (
   index,
-  { defaultTerm = "", debounce = 250, limit = 25 } = {}
+  { defaultSearchTerm = "", debounce = 250, limit = 25 } = {}
 ) => {
-  const [searchTerm, setSearchTerm] = useState(defaultTerm);
+  const [searchTerm, setSearchTerm] = useState(defaultSearchTerm);
   const [{ loading, results, error }, dispatch] = useReducer(
     reducer,
     initialState
