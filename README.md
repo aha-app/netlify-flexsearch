@@ -2,7 +2,7 @@
 
 # netlify-flexsearch
 
-Library to help build [FlexSearch](https://github.com/nextapps-de/flexsearch) indexes with Netlify functions.
+netlify-flexsearch provides a set of tools for implementing search for static sites hosted on Netlify, powered by [FlexSearch](https://github.com/nextapps-de/flexsearch) and [Netlify functions](https://www.netlify.com/products/functions).
 
 ## When do I need this?
 

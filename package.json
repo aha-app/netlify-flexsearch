@@ -1,12 +1,24 @@
 {
   "name": "@aha-app/netlify-flexsearch",
   "version": "0.1.2",
-  "description": "Helper library to build search with a Netlify function",
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "repository": "https://github.com/aha-app/netlify-flexsearch",
+  "description": "Implement search for static sites on Netlify, powered by FlexSearch and Netlify functions",
   "author": "Zach Schneider <zach@aha.io>",
   "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "keywords": [
+    "netlify",
+    "search",
+    "flexsearch"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aha-app/netlify-flexsearch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aha-app/netlify-flexsearch/issues"
+  },
+  "homepage": "https://github.com/aha-app/netlify-flexsearch#readme",
   "files": [
     "dist/",
     "createSearchIndex.js",
