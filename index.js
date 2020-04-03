@@ -5,7 +5,7 @@ const capitalize = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-export const search = ({ index, term, limit }) => {
+export const search = ({ index, term, limit = 25 }) => {
   let searchUrl = `/.netlify/functions/search${capitalize(index)}?term=${term}`;
   if (limit) searchUrl = `${searchUrl}&limit=${limit}`;
   return fetch(searchUrl).then((response) => response.json());
@@ -30,7 +30,7 @@ const reducer = (state, action) => {
 
 export const useSearch = (
   index,
-  { defaultTerm = "", debounce = 250, limit } = {}
+  { defaultTerm = "", debounce = 250, limit = 25 } = {}
 ) => {
   const [searchTerm, setSearchTerm] = useState(defaultTerm);
   const [{ loading, results, error }, dispatch] = useReducer(
