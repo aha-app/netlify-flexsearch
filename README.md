@@ -16,6 +16,18 @@ You might find this library useful if:
 
 [Netlify functions](https://www.netlify.com/products/functions) are serverless functions that Netlify automatically detects in your build and serves as APIs. This library helps you generate one or more Netlify functions during your build process which each contain a FlexSearch index. You can then make asynchronous requests to these functions to perform searches; the package also includes helper functions for making search requests.
 
+## Installation
+
+```
+npm install flexsearch @aha-app/netlify-flexsearch
+```
+
+or
+
+```
+yarn add flexsearch @aha-app/netlify-flexsearch
+```
+
 ## Usage
 
 1. Create a build script which invokes `createSearchIndex` one or more times. `createSearchIndex` accepts one object argument with the following options:
