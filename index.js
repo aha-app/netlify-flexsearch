@@ -5,9 +5,10 @@ const capitalize = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-export const search = ({ index, term, limit = 25 }) => {
+export const search = ({ index, term, excerpt, limit = 25 }) => {
   let searchUrl = `/.netlify/functions/search${capitalize(index)}?term=${term}`;
   if (limit) searchUrl = `${searchUrl}&limit=${limit}`;
+  if (excerpt) searchUrl = `${searchUrl}&excerpt=${excerpt}`;
   return fetch(searchUrl).then((response) => response.json());
 };
 
@@ -30,7 +31,7 @@ const reducer = (state, action) => {
 
 export const useSearch = (
   index,
-  { defaultSearchTerm = "", debounce = 250, limit = 25 } = {}
+  { defaultSearchTerm = "", debounce = 250, limit = 25, excerpt = false } = {}
 ) => {
   const [searchTerm, setSearchTerm] = useState(defaultSearchTerm);
   const [{ loading, results, error }, dispatch] = useReducer(
@@ -42,7 +43,7 @@ export const useSearch = (
   useEffect(() => {
     if (term && term !== "") {
       dispatch({ type: "startSearch" });
-      search({ index, term, limit })
+      search({ index, term, limit, excerpt })
         .then((response) =>
           dispatch({
             type: "endSearch",
@@ -52,7 +53,7 @@ export const useSearch = (
         )
         .catch((error) => dispatch({ type: "endSearch", results: [], error }));
     }
-  }, [index, term, limit]);
+  }, [index, term, limit, excerpt]);
 
   return [searchTerm, setSearchTerm, results, loading, error];
 };

@@ -91,6 +91,7 @@ const Search = () => {
   // - debounce (default 250)
   // - defaultSearchTerm (prefill the search with a term)
   // - limit (default 25; limit the number of results that are returned)
+  // - excerpt (default none; will populate the response with the n words surrounding the first match, if possible)
   const [searchTerm, setSearchTerm, results, loading, error] = useSearch('blog', { debounce: 300 });
 
   return (
@@ -111,7 +112,14 @@ const Search = () => {
           {results.map((result) => (
             // Result data here matches what is provided in the
             // `response` object when building the index.
-            <li key={result.id}>{result.name}</li>
+            <li key={result.id}>
+              <strong>{result.name}</strong>
+              <p>
+                {result.excerpt.moreBefore && '...'}
+                {result.excerpt.text}
+                {result.excerpt.moreAfter && '...'}
+              </p>
+            </li>
           ))}
         </ul>
       )}
