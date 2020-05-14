@@ -10,11 +10,9 @@ Object.entries(searchData).forEach(([id, item]) => {
   index.add(id, item.text);
 });
 
-exports.handler = function (event, context) {
-  const {
-    queryStringParameters: { limit, term, excerpt },
-  } = event;
-
+exports.handler = async function ({
+  queryStringParameters: { limit, term, excerpt },
+}) {
   const tokenizeStrategy = flexSearchOptions.tokenize || "strict";
 
   const results = index.search(term, limit).map((id) => {
