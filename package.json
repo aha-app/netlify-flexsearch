@@ -1,6 +1,6 @@
 {
   "name": "@aha-app/netlify-flexsearch",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Implement search for static sites on Netlify, powered by FlexSearch and Netlify functions",
   "author": "Zach Schneider <zach@aha.io>",
   "license": "MIT",
