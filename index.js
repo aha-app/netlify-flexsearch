@@ -12,12 +12,6 @@ export const search = ({ index, term, excerpt, limit = 25 }) => {
   return fetch(searchUrl).then((response) => response.json());
 };
 
-const initialState = {
-  loading: false,
-  error: null,
-  results: [],
-};
-
 const reducer = (state, action) => {
   switch (action.type) {
     case "startSearch":
@@ -34,6 +28,11 @@ export const useSearch = (
   { defaultSearchTerm = "", debounce = 250, limit = 25, excerpt = false } = {}
 ) => {
   const [searchTerm, setSearchTerm] = useState(defaultSearchTerm);
+  const initialState = {
+    loading: Boolean(defaultSearchTerm && defaultSearchTerm !== ""),
+    error: null,
+    results: [],
+  };
   const [{ loading, results, error }, dispatch] = useReducer(
     reducer,
     initialState
