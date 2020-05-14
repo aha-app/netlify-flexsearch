@@ -10,10 +10,12 @@ Object.entries(searchData).forEach(([id, item]) => {
   index.add(id, item.text);
 });
 
-exports.handler = function (event, context, callback) {
+exports.handler = function (event, context) {
   const {
     queryStringParameters: { limit, term, excerpt },
   } = event;
+
+  const tokenizeStrategy = flexSearchOptions.tokenize || "strict";
 
   const results = index.search(term, limit).map((id) => {
     const response = searchData[id].response;
@@ -23,19 +25,32 @@ exports.handler = function (event, context, callback) {
     const excerptNum = parseInt(excerpt);
     if (!isNaN(excerptNum)) {
       const fullText = searchData[id].text.split(/\s/);
-      const index = fullText.findIndex(
-        (word) =>
-          word.replace(/[^A-Za-z0-9\s]/g, "").toLowerCase() ===
-          term.toLowerCase()
-      );
+      const index = fullText.findIndex((word) => {
+        const cleanWord = word.replace(/[^A-Za-z0-9\s]/g, "").toLowerCase();
+        const cleanTerm = term.toLowerCase();
+
+        switch (tokenizeStrategy) {
+          case "forward":
+            return cleanWord.startsWith(cleanTerm);
+          case "reverse":
+            return cleanWord.endsWith(cleanTerm);
+          case "full":
+            return cleanWord.includes(cleanTerm);
+          case "strict":
+          default:
+            return cleanWord === cleanTerm;
+        }
+      });
       if (index > -1) {
+        const excerptStartIdx = Math.max(index - excerptNum, 0);
+        const excerptEndIdx = Math.min(
+          index + excerptNum + 1,
+          fullText.length - 1
+        );
+
         response.excerpt = {
-          text: fullText
-            .slice(
-              Math.max(index - excerptNum, 0),
-              Math.min(index + excerptNum + 1, fullText.length - 1)
-            )
-            .join(" "),
+          text: fullText.slice(excerptStartIdx, excerptEndIdx).join(" "),
+          matchIndex: index - excerptStartIdx,
           moreBefore: index - excerptNum > 0,
           moreAfter: index + excerptNum + 1 < fullText.length - 1,
         };
@@ -45,10 +60,10 @@ exports.handler = function (event, context, callback) {
     return response;
   });
 
-  callback(null, {
+  return {
     statusCode: 200,
     body: JSON.stringify({
       results,
     }),
-  });
+  };
 };
